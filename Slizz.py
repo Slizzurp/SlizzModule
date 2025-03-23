@@ -1,4 +1,8 @@
 import time
+import openai     # Importing OpenAI API
+from openai import Image
+from slizzkeywords import generate_keywords, generate_prompt, generate_image    # Importing functions from Slizz Keywords.py
+# NitroSlizz.app Module (NitroSlizz.py)
 python App.py
 # Ensure Pillow is installed
 # NitroSlizz.app Module (NitroSlizz.py)
