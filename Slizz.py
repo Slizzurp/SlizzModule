@@ -1,4 +1,10 @@
+# NitroSlizz.app Module (NitroSlizz.py)
+import os
+import random
 import time
+from PIL import Image, ImageDraw
+import pygame
+from flask import Flask, jsonify, request, render_template_string
 import openai     # Importing OpenAI API
 from openai import Image
 from slizzkeywords import generate_keywords, generate_prompt, generate_image    # Importing functions from Slizz Keywords.py
@@ -13,6 +19,44 @@ python -m pip install pillow
 # NitroSlizz.app Module (NitroSlizz.py)
 import random
 from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
+import random
+
+from PIL import Image, ImageDraw
+import random
+
+class NitroSlizz:
+    def __init__(self):
+        self.image_gallery = []
+
+    def generate_images(self, count=10, size=(200, 200), text_prefix="Image"):
+        images = []
+        for i in range(count):
+            img = Image.new("RGB", size, tuple(random.choices(range(256), k=3)))
+            draw = ImageDraw.Draw(img)
+            label = f"{text_prefix}_{i+1}"
+            draw.text((10, 10), label, fill="white")
+            image_path = f"{label}.png"
+            img.save(image_path)
+            images.append(image_path)
+        self.image_gallery.extend(images)
+        return images
+
+    def organize_gallery(self, images=None):
+        images = images or self.image_gallery
+        return {"Section 1": images[:5], "Section 2": images[5:]}
+
+    def randomize_gallery(self, images=None, count=5):
+        images = images or self.image_gallery
+        return random.sample(images, min(len(images), count))
+
+    def organize_gallery(self, images=None):
+        images = images or self.image_gallery
+        return {"Section 1": images[:5], "Section 2": images[5:]}
+
+    def randomize_gallery(self, images=None, count=5):
+        images = images or self.image_gallery
+        return random.sample(images, min(len(images), count))
 
 class NitroSlizz:
     def __init__(self):
